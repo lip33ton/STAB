@@ -7,9 +7,24 @@ headers = {
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
 }
 
+import argparse
+import requests
+
+# Dummy headers just for example
+headers = {
+    "User-Agent": "STABScanner/1.0"
+}
+
 def main():
-    parser = argparse.ArgumentParser(description="STAB - Save Time And Brain (Lip33ton's Offensive Web Scanner)")
-    parser.add_argument("--w", required=True, help="Path to directory brute-force wordlist (e.g. dirbuster.txt)")
+    parser = argparse.ArgumentParser(
+        description="STAB - Save Time And Brain (Lip33ton's Offensive Web Scanner)",
+        epilog="Example usage: python main.py --w "wordlist.txt" ( provide the location of the wordlist file if possible)
+    )
+    parser.add_argument(
+        "--w",
+        required=True,
+        help="Path to directory brute-force wordlist (e.g. dirbuster.txt)"
+    )
     args = parser.parse_args()
 
     website = input("Enter target (without https:// and .com): ").strip().lower()
@@ -33,6 +48,7 @@ def main():
 
     while True:
         choosing_menu(request_obj, response, url, args.w)
+
 
 if __name__ == "__main__":
     main()
